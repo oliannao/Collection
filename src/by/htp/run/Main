@@ -1,0 +1,237 @@
+package by.htp.run;
+
+import java.util.*;
+
+public class Main {
+public static void main(String[] args) {
+		
+		Set <ChildBook> set = new TreeSet<ChildBook>();
+		
+		set.add(new ChildBook(25, "Book1"));
+		set.add(new ChildBook(4, "Book1"));
+		set.add(new ChildBook(295, "Book1"));
+		set.add(new ChildBook(6, "Book1"));
+		set.add(new ChildBook(300, "Book1"));
+		set.add(new ChildBook(300, "Book1"));
+		
+		
+		for(Book book: set){
+			System.out.println(book.getPages());
+		}
+		
+		
+		
+	}
+}
+	
+/*
+	public static void main(String[] args) {
+		
+		Set <ChildBook> set = new LinkedHashSet<ChildBook>();
+		
+		set.add(new ChildBook(25, "Book1"));
+		set.add(new ChildBook(4, "Book1"));
+		set.add(new ChildBook(295, "Book1"));
+		set.add(new ChildBook(6, "Book1"));
+		set.add(new ChildBook(300, "Book1"));
+		set.add(new ChildBook(300, "Book1"));
+		
+		
+		for(Book book: set){
+			System.out.println(book.getPages());
+		}
+		
+		
+		
+	}
+	*/
+
+	/*public static void main(String[] args) {
+		
+		Set <ChildBook> set = new HashSet<ChildBook>();
+		
+		set.add(new ChildBook(25, "Book1"));
+		set.add(new ChildBook(4, "Book1"));
+		set.add(new ChildBook(295, "Book1"));
+		set.add(new ChildBook(6, "Book1"));
+		set.add(new ChildBook(300, "Book1"));
+		set.add(new ChildBook(300, "Book1"));
+		
+		
+		for(Book book: set){
+			System.out.println(book.getPages());
+		}
+		
+		
+		
+	}
+	8/		
+	/*
+	 public static void main(String[] args) {
+	 	LinkedList list = new LinkedList();
+		list.add(new Book(10));
+		list.add(new Book(5));
+		list.add(new Book(15));
+		
+		list.add(new ChildBook(30));
+		
+		for (int i = 0; i < list.size(); i++){
+			System.out.println(list.get(i));
+		}
+		Iterator<Book> it = list.iterator();
+		while (it.hasNext()){
+			Book book = it.next();
+			System.out.println(book);
+		}
+		ListIterator<Book> lit = list.listIterator();		
+		
+		while (lit.hasPrevious()){
+			Book book = lit.previous();
+			System.out.println(book);
+		}
+		
+		
+		System.out.println(" ");
+		*/
+	
+
+/*	public static void main(String[] args) {
+		ArrayList<Book> objects = new ArrayList<Book>();
+		objects.add(new Book(25));
+		objects.add(new Book(4));
+		objects.add(new Book());
+		//objects.add(new Object());
+		objects.add(new ChildBook(15));
+
+		for (int i = 0; i < objects.size(); i++) {
+		//	Object object = objects.get(i);
+		//	Book book = null;
+		//	if (object instanceof Book) {
+			//	book = (Book) objects.get(i);
+		Book book = objects.get(i);
+				System.out.println(book.getPages());
+			}
+
+		}
+
+		System.out.println(" ");
+
+	}
+	*/
+
+
+class Book implements Comparable {
+	private int pages;
+
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Book(int pages) {
+		super();
+		this.pages = pages;
+	}
+
+	public int getPages() {
+		return pages;
+	}
+
+	public void setPages(int pages) {
+		this.pages = pages;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + pages;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (pages != other.pages)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Main [pages=" + pages + "]";
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		ChildBook book = (ChildBook)o;
+		return getPages()- book.getPages();
+	}
+}
+class ChildBook extends Book{
+	private String  title;
+
+	public ChildBook(String title) {
+		super();
+		this.title = title;
+	}
+
+	public ChildBook() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public ChildBook(int pages) {
+		super(pages);
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ChildBook other = (ChildBook) obj;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		else if (super.getPages()!= other.getPages()){
+			return false;
+		}
+		return true;
+	}
+
+	public ChildBook(int pages, String title)
+	{
+		super(pages);
+		this.title = title;
+	}
+}
